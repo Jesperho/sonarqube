@@ -1,5 +1,7 @@
 import static org.example.Main.addMe;
+import static org.example.Main.subtractMe;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.example.Main;
 import org.junit.jupiter.api.Test;
 
 public class MainTest {
@@ -33,7 +35,29 @@ public class MainTest {
 
     @Test
     public void testAddMeLargeNumbers() {
-        int result = addMe(1000000, 2000000);  // Case with large numbers
-        assertEquals(3000000, result);  // The sum should be 3000000
+        int result = addMe(1000000, 2000000);
+        assertEquals(3000000, result);
+    }
+
+    @Test
+    public void testSubtractMePositive() {
+        assertEquals(8, subtractMe(12, 4));
+    }
+
+    @Test
+    public void testSubtractMeZero() {
+        assertEquals(12, subtractMe(12, 0));
+        assertEquals(-4, subtractMe(0, 4));
+    }
+
+    @Test
+    public void testSubtractMeNegative() {
+        assertEquals(-8, subtractMe(-12, -4));
+        assertEquals(16, subtractMe(12, -4));
+    }
+
+    @Test
+    public void testMainRuns() {
+        Main.main(new String[]{});
     }
 }
