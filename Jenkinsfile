@@ -45,18 +45,16 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                script {
-                    docker.build("${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG}")
-                }
+                bat "docker build -t ${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG} ."
             }
         }
 
         stage('Push Docker Image') {
             steps {
-                script {
-                    docker.withRegistry('https://index.docker.io/v1/', DOCKERHUB_CREDENTIALS_ID) {
-                        docker.image("${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG}").push()
-                    }
+                withCredentials([usernamePassword(credentialsId: "${DOCKERHUB_CREDENTIALS_ID}", usernameVariable: 'DH_USER', passwordVariable: 'DH_PASS')]) {
+                    bat 'echo %DH_PASS% | docker login -u %DH_USER% --password-stdin'
+                    bat "docker push ${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG}"
+                    bat 'docker logout'
                 }
             }
         }
