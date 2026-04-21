@@ -9,7 +9,7 @@ pipeline {
         JAVA_HOME = 'C:\\Program Files\\Java\\jdk-24'
         SONARQUBE_SERVER = 'sonarqube_server'
         SONAR_TOKEN = credentials('sonar-token')
-        DOCKERHUB_CREDENTIALS_ID = 'Docker_Hub'
+        DOCKERHUB_CREDENTIALS_ID = 'jesperho'
         DOCKERHUB_REPO = 'jesperho/sonarqube-demo'
         DOCKER_IMAGE_TAG = 'latest'
     }
