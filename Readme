@@ -1,0 +1,97 @@
+week 4/ Inclass assignment
+AD/ 2025
+
+Note: Follow the following AI generated instructions and install SonarQube and Sonar-Scanner in your machine. As this is AI generated and revised by teacher it may require that you must set or modify your system environment differently than instructed here.  I have noticed that SonarQube works best with JDK 17. Incase everything is setup properly and yet scanner works then you must set the Java Home in the system settings to 17.
+
+
+Prerequisites
+1	Java JDK 17+
+2	SonarQube (Community Edition or higher)
+3	SonarScanner
+4	IntelliJ IDEA (Community or Ultimate)
+5	Optional: Maven/ Gradle project
+
+
+
+Step 1: Install SonarQube
+1.1	Download SonarQube
+•	Go to the [SonarQube Downloads page]( https://www.sonarsource.com/products/sonarqube/downloads/)
+•	Choose the version you want to install (the latest stable version is recommended).
+•	Download the ZIP file for your operating system.
+1.2	 Extract the Files and install on Windows
+
+1.	Locate the downloaded ZIP file.
+2.	Extract it to a directory of your choice (e.g., C:\SonarQube on Windows or /opt/sonarqube on Linux).
+3.	Open terminal (CMD or PowerShell), navigate to: // or the location which you have saved
+C:\sonarqube\bin\windows-x86-xx\
+4.	Run the engine
+StartSonar.bat
+Note: for example SonarQube is in the following folder:
+C:\Users\amirdi\Documents\Spring2025\SonarQube\sonarqube-25.3.0.104237\bin\windows-x86-64>StartSonar.bat
+
+5.	Open your browser and go to http://localhost:9000
+Default login is:
+
+•	Username: admin
+•	Password: admin
+
+
+Step 2: Install SonarScanner
+1.	Download SonarScanner: https://docs.sonarsource.com/sonarqube/latest/analysis/scan/sonarscanner/
+2.	Extract it, e.g., C:\sonarscanner
+3.	Add to your environment variables:
+•	Add C:\sonarscanner\bin to PATH // make sure that the path is correct in your machine
+•	Set a new system variable:
+o	Key: SONAR_SCANNER_HOME
+o	Value: C:\sonarscanner
+Step 3: Prepare Your Project in IntelliJ
+1.	Open your project in IntelliJ
+2.	Make sure it’s a Maven or Gradle project (easiest to integrate)
+3.	In your root project directory, create or update sonar-project.properties:
+
+
+Note: To generate your own token, follow the following steps (Depending on the version of SonarQube, the location of generate token may change)
+In SonarQube → Top right corner → "My Account" → "Security" → Generate Token
+
+
+Step 4: Run SonarScanner
+•	In your project directory: run the sonar-scanner
+
+
+•	You’ll see analysis logs, and once completed, you can view results in the SonarQube dashboard:
+➡️ http://localhost:9000/projects
+
+    package org.example;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class Main {
+    // Create a logger instance
+    private static final Logger logger = Logger.getLogger(Main.class.getName());
+
+    public static void main(String[] args) {
+        // Calculate the result
+        int result = addMe(12, 4);
+
+        // Conditionally log the result only if INFO level is enabled
+        if (logger.isLoggable(Level.INFO)) {
+            // Construct the log message only if INFO level logging is enabled
+            logger.info(String.format("Result of addMe(12, 4): %d", result));
+        }
+    }
+
+    public static int addMe(int a, int b) {
+        return a + b;
+    }
+}
+
+
+ The code passes successfully in SonarQube in InteliJ but not passes in the local host, I could not find the reason, it only passes with the same code once…
+
+Adding coverage code may solve the problem to pass
+
+You may clone the code and test that SonarQube and the Scanner works fine
+
+
+
