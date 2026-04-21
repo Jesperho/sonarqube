@@ -7,7 +7,7 @@ pipeline {
     environment {
         PATH = "C:\\Program Files\\Docker\\Docker\\resources\\bin;${env.PATH}"
         JAVA_HOME = 'C:\\Program Files\\Java\\jdk-24'
-        SONARQUBE_SERVER = 'Sonarqube_server'
+        SONARQUBE_SERVER = 'sonarqube_server'
         SONAR_TOKEN = credentials('sonar-token')
         DOCKERHUB_CREDENTIALS_ID = 'Docker_Hub'
         DOCKERHUB_REPO = 'jesperho/sonarqube-demo'
@@ -32,8 +32,8 @@ pipeline {
                 withSonarQubeEnv("${SONARQUBE_SERVER}") {
                     bat """
                         "${tool 'SonarScanner'}\\bin\\sonar-scanner.bat" ^
-                        -Dsonar.projectKey=sonarqube ^
-                        -Dsonar.projectName=sonarqube ^
+                        -Dsonar.projectKey=assignment ^
+                        -Dsonar.projectName=assignment ^
                         -Dsonar.sources=src ^
                         -Dsonar.java.binaries=target/classes ^
                         -Dsonar.host.url=http://localhost:9000 ^
