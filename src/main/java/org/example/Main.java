@@ -8,10 +8,10 @@ public class Main {
     private static final Logger logger = Logger.getLogger(Main.class.getName());
 
     public static void main(String[] args) {
-        // Calculate and log the result
         if (logger.isLoggable(Level.INFO)) {
+            logger.info("Running as: Jesper Niklas");
             logger.info(String.format("Result of addMe(12, 4): %d", addMe(12, 4)));
-            logger.info(String.format("Result of addMe(12, 4): %d", subtractMe(12, 4)));
+            logger.info(String.format("Result of subtractMe(12, 4): %d", subtractMe(12, 4)));
         }
     }
 
