@@ -34,8 +34,12 @@ pipeline {
                         "${tool 'SonarScanner'}\\bin\\sonar-scanner.bat" ^
                         -Dsonar.projectKey=assignment ^
                         -Dsonar.projectName=assignment ^
-                        -Dsonar.sources=src ^
+                        -Dsonar.sources=src/main/java ^
+                        -Dsonar.tests=src/test/java ^
                         -Dsonar.java.binaries=target/classes ^
+                        -Dsonar.java.test.binaries=target/test-classes ^
+                        -Dsonar.junit.reportPaths=target/surefire-reports ^
+                        -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml ^
                         -Dsonar.host.url=http://localhost:9000 ^
                         -Dsonar.login=%SONAR_TOKEN%
                     """
